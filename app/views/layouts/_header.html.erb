@@ -29,32 +29,30 @@
             <button class="btn btn-sm btn btn-light mr-3" type="button">
           　　  <%= link_to "マイページ", customers_path(current_customer), class: "nav-link" %>
             </button>
-        　　<button class="btn btn-sm btn btn-light mr-3" type="button">i>
-        　　    <%= link_to "商品一覧", items_path, class: "header_btn glyphicon glyphicon-briefcase" %>
+        　　<button class="btn btn-sm btn btn-light mr-3" type="button">
+        　　    <%= link_to "商品一覧", items_path, class: "nav-link" %>
        　    </button>
-       　    <button class="btn btn-sm btn btn-light mr-3" type="button">>
-              <%=  link_to cart_items_path ,class: "header_btn glyphicon glyphicon-shopping-cart" do %>
-                カート
-              <% end %>
+       　    <button class="btn btn-sm btn btn-light mr-3" type="button">
+              <%=  link_to "カート", cart_items_path ,class: "nav-link" %>
             </button>
-            <button class="btn btn-sm btn btn-light mr-3" type="button">
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "header_btn glyphicon glyphicon-log-out" %>
+             <button class="btn btn-sm btn btn-light mr-3" type="button" >
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
             </button>
 
           <% elsif admin_signed_in? %>
 
           <!-- 管理者がログインしている時 -->
             <button class="btn btn-sm btn btn-light mr-3" type="button">
-              <%= link_to "商品一覧", admin_items_path, class: "header_btn glyphicon glyphicon-briefcase" %>
+              <%= link_to "商品一覧", admin_items_path, class: "nav-link" %>
             </button>
             <button class="btn btn-sm btn btn-light mr-3" type="button">
-              <%= link_to "会員一覧", admin_customers_path, class: "header_btn glyphicon glyphicon-user"  %>
+              <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
             </button>
             <button class="btn btn-sm btn btn-light mr-3" type="button">
-              <%= link_to "注文履歴一覧", admin_order_path, class: "header_btn glyphicon glyphicon-list-alt" %>
+              <%= link_to "注文履歴一覧", admin_order_path, class: "nav-link" %>
             </button>
             <button class="btn btn-sm btn btn-light mr-3" type="button">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "header_btn glyphicon glyphicon-log-out" %>
+              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
             </button>
 
           <% else %>
