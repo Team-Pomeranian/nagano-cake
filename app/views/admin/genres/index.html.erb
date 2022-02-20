@@ -1,24 +1,2 @@
-<h2>ジャンル一覧・追加</h2>
-<%= form_with model:@gerne_new, local: true do |f| %>
-  <div class ="container">
-    <div class ="row">
-      <div class ="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto" %>
-        <tr>
-          <td>ジャンル名</td>
-          <td><%= f.text_field :name, placeholder: "ジャンル名" %></td>
-          <td><%= f.submit "新規登録", class: "btn btn-sm btn-success" %></td>
-        </tr>
-      </div>
-    </div>
-  </div>
-<% end %>
-<% @genres.each do |genre| %>
-  <table class= "table">
-    <th>ジャンル</th><th></th>
-    <tr>
-      <td><%= genre.name %></td>
-      <td><%= link_to "編集する", edit_admin_genre_path(genre), local: true %></td>
-    </tr>
-  </table>
-<% end %>
-
+<h1>Admin::Genres#index</h1>
+<p>Find me in app/views/admin/genres/index.html.erb</p>
