@@ -50,7 +50,10 @@
               <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
             </button>
             <button class="btn btn-sm btn-light mr-3" type="button">
-              <%= link_to "注文履歴一覧", admin_order_path, class: "nav-link" %>
+              <%= link_to "注文履歴一覧", admin_root_path, class: "nav-link" %>
+            </button>
+            <button class="btn btn-sm btn-light mr-3" type="button">
+              <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link" %>
             </button>
             <button class="btn btn-sm btn-light mr-3" type="button">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
