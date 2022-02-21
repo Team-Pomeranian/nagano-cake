@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+
+
   devise_for :customers,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -51,6 +53,8 @@ Rails.application.routes.draw do
   end
 
   resources :items,only: [:index, :show]
+
+  resources :genres, only: [:show]
 
   end
 
