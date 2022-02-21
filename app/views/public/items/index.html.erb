@@ -26,11 +26,13 @@
       </div>
 
 
-      <div>
+      <div class="row">
 
         <% @items.each do |item| %>
         <div>
-          <%= image_tag item.item_image %>
+          <%= link_to item_path do %>
+          <%= image_tag item.item_image, size: '100x100' %>
+          <% end %>
           <%= item.name %><br>
           ¥<%= item.price_no_tax %><br>
         </div>
