@@ -65,7 +65,7 @@
               <td><%= f.name %></td>
                 <td>¥<%= f.price_no_tax.to_s(:delimited) %></td>
                 <td><%= f.quantity %></td>
-                <td>¥<%= f.price_no_tax*f.quantity.to_s(:delimited) %></td>
+                <td>¥<%= (f.price_no_tax*f.quantity).to_s(:delimited) %></td>
             </tr>
           <% end %>
         </tbody>
