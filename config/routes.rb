@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :customers,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
+  devise_for :customers, skip: :all
+  devise_scope :customer do
+    get 'customers/sign_in' => 'public/sessions#new', as: 'new_customer_session'
+    post 'customers/sign_in' => 'public/sessions#create', as: 'customer_session'
+    delete 'customers/sign_out' => 'public/sessions#destroy', as: 'destroy_customer_session'
+    get 'customers/sign_up' => 'public/registrations#new', as: 'new_customer_registration'
+    post 'customers' => 'public/registrations#creat', as: 'customer_registration'
+  end
 
   devise_for :admin,skip: [:registrations, :passwords], controllers:{
     sessions: "admin/sessions"
