@@ -1,2 +1,18 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="container">
+  <div class="col-lg-3">
+    <p>ジャンル一覧（未）</p>
+  </div>
+  <div class="col-lg-4">
+    <%= attachment_image_tag @item, :item_image,style: "width: 350px; height: 250px; margin-top:80px;" %>
+  </div>
+  <div class="col-lg-5">
+    <h1 class="float-left" style="font-weight: bold; margin-top:100px;"><%= @item.name%></h1>
+    <p class="float-left"><%= @item.introduction %></p>
+    <p class="float-left"><strong>¥ <%= (@item.price_no_tax*1.1).to_s(:delimited) %></strong>(税込)</p>
+    <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
+      <%= f.label :quantity, "個数選択" %>
+      <%= f.number_field :quantity, min: 1, max: 100, placeholder: '個数選択', class: "quantity-select-form" %>
+      <%= f.submit "カートに入れる", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
