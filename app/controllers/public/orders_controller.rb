@@ -11,6 +11,7 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items.all
     @order = Order.new(order_params)
     @postage = 800
+    @order.payment = params[:order][:payment]
     @total_fee = current_customer.cart_items.cart_items_total_price(@cart_items)
   end
 
