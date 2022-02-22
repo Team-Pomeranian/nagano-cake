@@ -36,7 +36,7 @@
       <div class="row">
 
         <% @items.each do |item| %>
-        <div class="pl-2">
+        <div class="pl-4">
           <%= link_to item_path(item.id) do %>
           <%= image_tag item.get_image(200, 300) %>
           <% end %>
