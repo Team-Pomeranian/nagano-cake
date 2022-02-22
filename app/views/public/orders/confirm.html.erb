@@ -1,2 +1,82 @@
-<h1>Public::Orders#confirm</h1>
-<p>Find me in app/views/public/orders/confirm.html.erb</p>
+  <div class="container">
+    <div class="row">
+      <h2>注文情報確認</h2>
+      <div class="col-sm-8"  style="margin: 50px;">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">商品名</th>
+              <th scope="col">単価（税込）</th>
+              <th scope="col">数量</th>
+              <th scope="col">小計</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |cart_item| %>
+              <tr>
+                <td><%= cart_item.item.name %></td>
+                <td><%= (cart_item.item.price_no_tax * 1.1).to_i%></td>
+                <td><%= cart_item.quantity %></td>
+                <td>¥<%= (cart_item.item.price_no_tax * cart_product.quantity * 1.1).floor.to_s(:delimited) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+
+
+
+
+        <%= form_with model: @order, url:orders_path, method: :post, local: true do |f| %>
+        <table class="table" style="margin: 50px;">
+          <tbody>
+            <tr>
+              <th scope="row">支払い方法</th>
+              <td><%= @order.payment %></td>
+              <%= f.hidden_field :payment, :value => @order.payment %>
+            </tr>
+            <tr>
+              <th scope="row">お届け先</th>
+              <td>
+                <p><%= @order.postcode %>&emsp;<%= @order.address %></p>
+                <%= f.hidden_field :postcode, :value => @order.postcode %>
+                <%= f.hidden_field :address, :value => @order.address %>
+                <p><%= @order.name %></p>
+                <%= f.hidden_field :name, :value => @order.name %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-sm-4" style="margin: 50px;">
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td class="active">送料</td>
+              <td>¥<%= @postage %></td>
+              <%= f.hidden_field :postage, :value => @postage %>
+            </tr>
+            <tr>
+              <td class="active">商品合計</td>
+              <td>¥<%= @total_fee.to_s(:delimited) %></td>
+            </tr>
+            <tr>
+              <td class="active">請求合計</td>
+              <td>¥<%= (@total_fee + @postage).to_s(:delimited) %></td>
+              <%= f.hidden_field :total_price, :value => (@total_fee + @postage) %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+
+
+    <div class="row">
+      <div class="col-sm-offset-5">
+          <%= f.submit "注文を確定する",class:"btn btn-primary col-sm-12" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
