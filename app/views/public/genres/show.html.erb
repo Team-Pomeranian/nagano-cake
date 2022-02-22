@@ -1,4 +1,4 @@
-<div class="container pt-5">
+<div class="p-5">
 
   <div class="row">
 
@@ -29,7 +29,7 @@
         <% @genre.items.each do |item| %>
         <div>
           <%= link_to item_path(item) do %>
-          <%= image_tag item.item_image, size: '100x100' %>
+          <%= image_tag item.get_image(200, 300) %>
           <% end %>
           <%= item.name %><br>
           ¥<%= item.price_no_tax %><br>
@@ -39,8 +39,6 @@
       </div>
 
 
-      <div class="text-center">
-      </div>
 
     </div>
 
