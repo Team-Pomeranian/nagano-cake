@@ -1,18 +1,35 @@
 <div class="container">
-  <div class="col-lg-3">
-    <p>ジャンル一覧（未）</p>
+  <div class="row">
+    <div class="col-md-2">
+      <table class="table border">
+        <thead class="text-center">
+          <tr>
+            <th>ジャンル検索</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render "sidebar", genres: @genres %>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+    <div class="col-md-5">
+      <%= image_tag @item.get_image(300, 400) %>
+    </div>
+
+    <div class="col-md-5">
+      <h1 class="float-left col-md-12 " style="font-weight: bold;"><%= @item.name%></h1>
+      <div class="float-left col-md-12 mt-1 mb-5"><%= @item.introduction %></div>
+
+      <p class="float-left col-md-12"><strong>¥ <%= (@item.price_no_tax*1.1).floor %></strong>(税込)</p>
+      <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
+        <div class="float-left col-md-6"><%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'] , {include_blank: '個数選択'} , class: "quantity-select-form" %></div>
+        <div class="float-left col-md-6"><%= f.submit "カートに入れる", class: "btn btn-primary" %></div>
+      <% end %>
   </div>
-  <div class="col-lg-4">
-    <%= attachment_image_tag @item, :item_image,style: "width: 350px; height: 250px; margin-top:80px;" %>
-  </div>
-  <div class="col-lg-5">
-    <h1 class="float-left" style="font-weight: bold; margin-top:100px;"><%= @item.name%></h1>
-    <p class="float-left"><%= @item.introduction %></p>
-    <p class="float-left"><strong>¥ <%= (@item.price_no_tax*1.1).to_s(:delimited) %></strong>(税込)</p>
-    <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
-      <%= f.label :quantity, "個数選択" %>
-      <%= f.number_field :quantity, min: 1, max: 100, placeholder: '個数選択', class: "quantity-select-form" %>
-      <%= f.submit "カートに入れる", class: "btn btn-primary" %>
-    <% end %>
   </div>
 </div>
