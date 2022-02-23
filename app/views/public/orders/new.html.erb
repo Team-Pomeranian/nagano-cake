@@ -36,9 +36,7 @@
           <%= f.label :order_address, "登録済住所から選択" %>
         </div>
         <div class="col-sm-4 ml-5">
-          <p>
-            <%= f.collection_select :customer_id, current_customer.delivery_addresses.all, :id, :address, prompt: "住所を選択してください" %>
-          </p>
+          <%= f.collection_select :customer_id, current_customer.delivery_addresses.all, :id, :address, prompt: "住所を選択してください" %>
         </div>
       </div>
 
