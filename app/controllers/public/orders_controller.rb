@@ -13,6 +13,25 @@ class Public::OrdersController < ApplicationController
     @postage = 800
     @order.payment = params[:order][:payment]
     @total_fee = current_customer.cart_items.cart_items_total_price(@cart_items)
+
+    if params[:order][:address_option] == "0"
+        @order.postcode = current_customer.post_code
+        @order.address = current_customer.address
+        @order.name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:address_option] == "1"
+        ship = DeliveryAddress.find(params[:order][:customer_id])
+        @order.postcode = ship.postcode
+        @order.address = ship.address
+        @order.name = ship.name
+    elsif params[:order][:address_option] = "2"
+        @order.postcode = params[:order][:postcode]
+        @order.address = params[:order][:address]
+        @order.name = params[:order][:name]
+    else
+        render 'new'
+    end
+        @cart_items = current_customer.cart_items.all
+        @order.customer_id = current_customer.id
   end
 
   def index
@@ -29,20 +48,21 @@ class Public::OrdersController < ApplicationController
     @order = current_customer.orders.new(order_params)
     @total_fee = current_customer.cart_items.cart_items_total_price(@cart_items)
     @postage = 800
-      if @order.save
-        @cart_items.each do |cart|
-          order_item = OrderItem.new(order_id: @order.id)
-          order_item.price = cart.item.price_no_tax
-          order_item.quantity = cart.quantity
-          order_item.item_id = cart.item_id
-          order_item.save!
-        end
-        redirect_to complete_orders_path
-        @cart_items.destroy_all
-      else
-        @order = Order.new(order_params)
-        render :new
+    @order.customer_id = current_customer.id
+    @order.save
+
+    current_customer.cart_items.each do |cart_item|
+      @ordered_item = OrderedItem.new
+      @ordered_item.item_id = cart_item.item_id
+      @ordered_item.quantity = cart_item.quantity
+      @ordered_item.price = (cart_item.item.price*1.1).floor
+      @ordered_item.order_id =  @order.id
+      @ordered_item.save
       end
+
+      current_customer.cart_items.destroy_all
+      redirect_to complete_orders_path
+
   end
 
 
