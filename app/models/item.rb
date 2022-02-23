@@ -5,9 +5,16 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_one_attached :image
   
-
   def with_tax_price
     (price * 1.1).floor
+  end
+  
+  def cal_price
+    (price_no_tax*1.1).floor.to_s(:delimited)
+  end
+  
+  def adj_price
+    price_no_tax.to_s(:delimited)
   end
   
   def get_image(width, height)
