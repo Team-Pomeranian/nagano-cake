@@ -1,12 +1,58 @@
-<div class="container">
-  <div class="row">
-    <h1>top page test</h1>
+<div class="p-5">
 
-    <% if customer_signed_in? %>
-      <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "ログイン", new_customer_session_path %>
-    <% end %>
+  <div class="row">
+
+    <div class="col-md-2">
+      <table class="table border">
+        <thead class="text-center">
+          <tr>
+            <th>ジャンル検索</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <%= render "public/items/sidebar", genres: @genres %>
+        </tbody>
+
+      </table>
+    </div>
+
+    <div class="col-md-8">
+
+      <div class="card mb-4">
+        <%= image_tag "test.png",size: "700x300",class: "mx-auto" %>
+        <div class="card-img-overlay col-6 mx-auto mt-5">
+          <div class="bg-white py-2">
+            <p>ようこそ、ながのCAKEへ！</p>
+            <p>このサイトは、ケーキ販売のECサイトになります。</p>
+            <p>会員でない方も商品の閲覧はできますが、</p>
+            <p>購入には会員登録が必要になります。</p>
+          </div>
+        </div>
+      </div>
+
+        <h2 class="font-weight-bold mb-3">新着商品</h2>
+
+      <div class="row">
+
+        <% @items.each do |item| %>
+        <div class="pl-4">
+          <%= link_to item_path(item.id) do %>
+          <%= image_tag item.get_image(200, 300) %>
+          <% end %>
+          <p><%= item.name %></p>
+          <p>¥<%= item.price_no_tax %></p>
+        </div>
+        <% end %>
+
+      </div>
+      <div class="offset-md-9">
+        <%= link_to "全ての商品を見る >",items_path %>
+      </div>
+
+    </div>
+
 
   </div>
+
 </div>
