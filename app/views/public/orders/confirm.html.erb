@@ -1,9 +1,10 @@
-  <div class="container">
+<div class="container p-5">
     <div class="row">
-      <div class="col-sm-12">
 
-        <h4>注文情報確認</h4>
-        <div class="col-sm-6">
+        <div class="col-sm-12">
+          <h4>注文情報確認</h4>
+        </div>
+        <div class="col-sm-8">
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -19,13 +20,12 @@
                 <td><%= cart_item.item.name %></td>
                 <td><%= (cart_item.item.price_no_tax * 1.1).to_i%></td>
                 <td><%= cart_item.quantity %></td>
-                <td>¥<%= (cart_item.item.price_no_tax * cart_product.quantity * 1.1).floor.to_s(:delimited) %></td>
+                <td>¥<%= (cart_item.item.price_no_tax * cart_item.quantity * 1.1).floor.to_s(:delimited) %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
         </div>
-
 
         <div class="col-sm-4">
         <table class="table table-bordered">
@@ -49,36 +49,29 @@
         </table>
         </div>
 
-
-
-
-        <div class="col-sm-12">
-          <div class="col-sm-3">
+          <div class="col-sm-2">
             <h5>支払方法</h5>
           </div>
-          <div class="col-sm-5">
+
+          <div class="col-sm-10">
             <%= @order.payment %>
             <%= f.hidden_field :payment, value: @order.payment %></br>
           </div>
-          <div class="col-sm-3">
+
+          <div class="col-sm-2">
             <h5>お届け先</h5>
           </div>
-          <div class="col-sm-9">
+          <div class="col-sm-10">
             <p>〒<%= @order.postcode %>&emsp;<%= @order.address %></p>
             <%= f.hidden_field :postcode, value: @order.postcode %>
             <%= f.hidden_field :address, value: @order.address %>
             <p><%= @order.name %></p>
             <%= f.hidden_field :name, value: @order.name %>
           </div>
-        </div>
-
-
-
 
       <div class="col-sm-12 text-center">
         <%= f.submit "注文を確定する",class:"btn btn-primary" %>
       </div>
       <% end %>
     </div>
-  </div>
 </div>
