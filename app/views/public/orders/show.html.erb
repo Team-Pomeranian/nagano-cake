@@ -1,2 +1,75 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2>注文履歴詳細</h2>
+    <div class="col-lg-6">
+      <strong>注文情報</strong>
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td class="table-active">注文日</td>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+          </tr>
+          <tr>
+            <td class="table-active">配送先</td>
+            <td>
+              <p><%= @order.postcode %><br>
+                <%= @order.address %><br>
+                <%= @order.name %>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-active">支払い方法</td>
+            <td><%= @order.payment %></td>
+          </tr>
+          <tr>
+            <td class="table-active">ステータス</td>
+            <td><%= @order.status %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-lg-3">
+      <strong>請求情報</strong>
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-active">商品合計</td>
+          <td><%= (@order.total_price - @order.postage).to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <td class="table-active">配送料</td>
+          <td><%= @order.postage.to_s(:delimited) %></td>
+        </tr>
+        <tr>
+          <td class="table-active">ご請求金額</td>
+          <td><%= @order.total_price.to_s(:delimited) %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-lg-6">
+      <strong>注文内容</strong>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">商品</th>
+            <th scope="col">単価（税込）</th>
+            <th scope="col">個数</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @order_items.each do |f| %>
+            <tr>
+              <td><%= f.name %></td>
+                <td>¥<%= f.price_no_tax.to_s(:delimited) %></td>
+                <td><%= f.quantity %></td>
+                <td>¥<%= (f.price_no_tax*f.quantity).to_s(:delimited) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
