@@ -1,23 +1,23 @@
-<h2><%= @customer.first_name %><%= @customer.last_name %>さんの会員詳細</h2>
+<h4 class ="shadow p-3 mb-5 bg-light rounded font-weight-bold font-italic bg-dark text-white"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h4>
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <table class= "table">
-        <tr><td>会員ID</td><td><%= @customer.id %></td></tr>
-        <tr><td>氏名</td><td><%= @customer.first_name %><%= @customer.last_name %></td></tr>
-        <tr><td>フリガナ</td><td><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td></tr>
-        <tr><td>郵便番号</td><td><%= @customer.post_code %></td></tr>
-        <tr><td>住所</td><td><%= @customer.address %></td></tr>
-        <tr><td>電話番号</td><td><%= @customer.telephone_number %></td></tr>
-        <tr><td>メールアドレス</td><td><%= @customer.email %></td></tr>
+        <tr><td class = "font-weight-bold">会員ID</td><td><%= @customer.id %></td></tr>
+        <tr><td class = "font-weight-bold">氏名</td><td><%= @customer.last_name %><%= @customer.first_name %></td></tr>
+        <tr><td class = "font-weight-bold">フリガナ</td><td><%= @customer.first_name_kana %><%= @customer.last_name_kana %></td></tr>
+        <tr><td class = "font-weight-bold">郵便番号</td><td><%= @customer.post_code %></td></tr>
+        <tr><td class = "font-weight-bold">住所</td><td><%= @customer.address %></td></tr>
+        <tr><td class = "font-weight-bold">電話番号</td><td><%= @customer.telephone_number %></td></tr>
+        <tr><td class = "font-weight-bold">メールアドレス</td><td><%= @customer.email %></td></tr>
         <tr>
-          <td>会員ステータス</td>
+          <td class = "font-weight-bold">会員ステータス</td>
           <td>
             <% if @customer.is_deleted %>
-              <%= "退会済み" %>
-            <% else %>
-              <%= "有効会員" %>
-            <% end %>
+              <p class = "font-weight-bold"><%= "退会済み" %></p>
+              <% else %>
+                <p class= "text-success font-weight-bold"><%= "有効会員" %></p>
+              <% end %>
           </td>
         </tr>
       </table>

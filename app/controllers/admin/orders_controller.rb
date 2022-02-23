@@ -9,7 +9,12 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_items = @order.order_items
     @order.update(order_params)
-    redirect_to request.referer
+    if @order.status == "入金確認"
+      @order_items.update_all(production_status: 1)
+      redirect_to  request.referer
+    else
+      redirect_to request.referer
+    end
   end
 
   private
@@ -17,4 +22,5 @@ class Admin::OrdersController < ApplicationController
   def order_params
     params.require(:order).permit(:status)
   end
+
 end

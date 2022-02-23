@@ -100,10 +100,9 @@ ActiveRecord::Schema.define(version: 2022_02_20_045906) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.integer "price_no_tax", null: false
-    t.string "item_image", null: false
     t.boolean "sales_status", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6 , null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "order_items", force: :cascade do |t|

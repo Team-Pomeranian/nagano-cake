@@ -1,10 +1,10 @@
-<h2>ジャンル編集</h2>
+<h4 class ="shadow p-3 mb-5 bg-light rounded font-weight-bold font-italic bg-dark text-white">ジャンル編集</h4>
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       <%= form_with model: @genre, url:admin_genre_path(@genre), method: :patch, local: true do |f| %>
         <tr>
-          <td>ジャンル</td>
+          <td class = "font-weight-bold">ジャンル</td>
           <td><%= f.text_field :name %></td>
           <td><%= f.submit "変更を保存", class: "btn btn-sm btn-success" %></td>
         </tr>
