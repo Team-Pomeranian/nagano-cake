@@ -3,7 +3,8 @@
       <div class="col-sm-12">
 
         <h4>注文情報確認</h4>
-        <table class="table table-bordered col-sm-6">
+        <div class="col-sm-6">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th scope="col">商品名</th>
@@ -23,11 +24,11 @@
             <% end %>
           </tbody>
         </table>
+        </div>
 
 
-
-
-        <table class="table table-bordered col-sm-4">
+        <div class="col-sm-4">
+        <table class="table table-bordered">
           <%= form_with model: @order, url:orders_path, method: :post, local: true do |f| %>
           <tbody>
             <tr>
@@ -46,7 +47,7 @@
             </tr>
           </tbody>
         </table>
-
+        </div>
 
 
 
@@ -80,5 +81,4 @@
       <% end %>
     </div>
   </div>
-
 </div>
