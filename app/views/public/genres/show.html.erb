@@ -11,7 +11,7 @@
         </thead>
 
         <tbody>
-          <%= render "sidebar", genres: @genres %>
+          <%= render "public/items/sidebar", genres: @genres %>
         </tbody>
 
       </table>
@@ -19,29 +19,25 @@
 
     <div class="col-md-8">
       <div class="row ml-3">
-        <h3 class="font-weight-bold">商品一覧</h3>
-        <p class="p-2">(全<%= @items_count %>件）<p>
+        <h3 class="font-weight-bold"><%= @genre.name %>一覧</h3>
+        <p class="p-2">(全<%= @genre.items.count %>件）<p>
       </div>
 
 
       <div class="row">
 
-        <% @items.each do |item| %>
+        <% @genre.items.each do |item| %>
         <div class="pl-4">
-          <%= link_to item_path(item.id) do %>
-          <%= image_tag item.get_image(200, 300) %>
+          <%= link_to item_path(item) do %>
           <% end %>
-          <p><%= item.name %></p>
-          <p>¥<%= item.price_no_tax %></p>
+          <%= item.name %><br>
+          ¥<%= item.price_no_tax %><br>
         </div>
         <% end %>
 
       </div>
 
 
-    <div class="offset-md-4 mt-5">
-      <%= paginate @items %>
-    </div>
 
     </div>
 
