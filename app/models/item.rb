@@ -28,5 +28,13 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
+  
+  def self.search(search)
+    if search
+      Item.where(['name LIKE ?', "%#{search}%"])
+    else
+      Item.all  #検索結果が当てはまらない場合は全て表示
+    end
+  end
 
 end
