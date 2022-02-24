@@ -1,8 +1,9 @@
 class CartItem < ApplicationRecord
 
   belongs_to :customer
-  belongs_to :order
   belongs_to :item
+
+
 
   def self.cart_items_total_price(cart_items)
     array = []
