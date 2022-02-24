@@ -6,7 +6,7 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   def with_tax_price
-    (price * 1.1).floor
+    (price_no_tax * 1.1).floor
   end
 
   def with_tax_price_order
