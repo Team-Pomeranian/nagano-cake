@@ -13,8 +13,5 @@ class Public::ItemsController < ApplicationController
 
 private
 
- def item_params
-  params.require(:items).permit(:genre_id,:name,:description,:image_id,:price)
- end
 
 end
