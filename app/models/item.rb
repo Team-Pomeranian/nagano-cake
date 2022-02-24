@@ -21,6 +21,7 @@ class Item < ApplicationRecord
     price_no_tax.to_s(:delimited)
   end
 
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -28,7 +29,7 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def self.search(search)
     if search
       Item.where(['name LIKE ?', "%#{search}%"])
