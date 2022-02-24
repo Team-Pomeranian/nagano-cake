@@ -1,41 +1,41 @@
-<h2><%= @customer.first_name %><%= @customer.last_name %>さんの会員情報編集</h2>
 <div class='container'>
+  <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集</h2>
   <div class='row'>
     <div class = "mx-auto", style="width: 75%;">
       <%= form_with model: [:admin, @customer], local: true do |f| %>
         <table class ="table">
           <tr>
-            <td>会員ID</td>
+            <td class="font-weight-bold">会員ID</td>
             <td><%= @customer.id %></td>
           </tr>
           <tr>
-            <td>氏名</td>
-            <td><%= f.text_field :first_name %></td>
+            <td class="font-weight-bold">氏名</td>
             <td><%= f.text_field :last_name %></td>
+            <td><%= f.text_field :first_name %></td>
           </tr>
           <tr>
-            <td>フリガナ</td>
-            <td><%= f.text_field :first_name_kana %></td>
+            <td class="font-weight-bold">フリガナ</td>
             <td><%= f.text_field :last_name_kana %></td>
+            <td><%= f.text_field :first_name_kana %></td>
           </tr>
           <tr>
-            <td>郵便番号</td>
+            <td class="font-weight-bold">郵便番号</td>
             <td><%= f.text_field :post_code %></td>
           </tr>
           <tr>
-            <td>住所</td>
+            <td class="font-weight-bold">住所</td>
             <td><%= f.text_field :address %></td>
           </tr>
           <tr>
-            <td>電話番号</td>
+            <td class="font-weight-bold">電話番号</td>
             <td><%= f.text_field :telephone_number %></td>
           </tr>
           <tr>
-            <td>メールアドレス</td>
+            <td class="font-weight-bold">メールアドレス</td>
             <td><%= f.text_field :email %></td>
           </tr>
           <tr>
-            <td>会員ステータス</td>
+            <td class="font-weight-bold">会員ステータス</td>
             <td>
               <%= f.radio_button(:is_deleted, "false") %>
               <%= f.label(:is_deleted, "有効", value: "有効")  %>
