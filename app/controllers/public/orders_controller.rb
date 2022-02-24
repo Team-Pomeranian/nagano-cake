@@ -52,10 +52,10 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     current_customer.cart_items.each do |cart_item|
-      @ordered_item = OrderedItem.new
+      @ordered_item = OrderItem.new
       @ordered_item.item_id = cart_item.item_id
       @ordered_item.quantity = cart_item.quantity
-      @ordered_item.price = (cart_item.item.price*1.1).floor
+      @ordered_item.price = (cart_item.item.toprice*1.1).floor
       @ordered_item.order_id =  @order.id
       @ordered_item.save
       end
