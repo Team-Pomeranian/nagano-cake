@@ -1,0 +1,10 @@
+
+  <div class="form-group">
+    <%= form_tag searches_search_path, method: :get do %>
+      <%= text_field_tag :search, params[:search],:placeholder => "Search" %>
+        <%= button_tag type: 'submit', class: 'btn btn-warning' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+    <% end %>
+  </div>
+
