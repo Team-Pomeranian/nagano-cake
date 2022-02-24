@@ -35,7 +35,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.page(params[:page])
   end
 
   def show
@@ -55,7 +55,7 @@ class Public::OrdersController < ApplicationController
       @ordered_item = OrderItem.new
       @ordered_item.item_id = cart_item.item_id
       @ordered_item.quantity = cart_item.quantity
-      @ordered_item.price = (cart_item.item.toprice*1.1).floor
+      @ordered_item.price = (cart_item.item.price_no_tax*1.1).floor
       @ordered_item.order_id =  @order.id
       @ordered_item.save
       end
