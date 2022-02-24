@@ -22,7 +22,7 @@
           <tr>
             <td>
               <%= link_to item_path(cart_item.item.id) do %>
-              <%= image_tag cart_item.item.get_image(70, 90) %>
+              <%= image_tag cart_item.item.get_image(70, 90) ,class: "shadow p-1 mb-1 bg-body round" %>
               <% end %>
               <%= cart_item.item.name %>
             </td>
