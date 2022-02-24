@@ -29,7 +29,7 @@
       <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
         <div class="float-left col-md-6"><%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'] , {include_blank: '個数選択'} , class: "quantity-select-form" %></div>
         <div class="float-left col-md-6"><%= f.submit "カートに入れる", class: "btn btn-primary" %></div>
-        <%= f.hidden_field :item_id, value: @item %>
+        <%= f.hidden_field :item_id, value: @item.id %>
       <% end %>
   </div>
   </div>
