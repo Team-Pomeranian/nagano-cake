@@ -29,7 +29,7 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def self.search(search)
     if search
       Item.where(['name LIKE ?', "%#{search}%"])
