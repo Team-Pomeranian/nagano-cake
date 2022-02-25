@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     post 'customers/sign_in' => 'public/sessions#create', as: 'customer_session'
     delete 'customers/sign_out' => 'public/sessions#destroy', as: 'destroy_customer_session'
     get 'customers/sign_up' => 'public/registrations#new', as: 'new_customer_registration'
-    post 'customers' => 'public/registrations#creat', as: 'customer_registration'
+    post 'customers' => 'public/registrations#create', as: 'customer_registration'
   end
 
   get 'searches/search'
-  
+
 
   devise_for :admin,skip: [:registrations, :passwords], controllers:{
     sessions: "admin/sessions"
