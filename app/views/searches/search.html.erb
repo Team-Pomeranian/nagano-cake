@@ -1,0 +1,26 @@
+<row>
+  <div class="col-lg-10 mt-5 ml-5">
+    <h2>検索結果一覧</h2>
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-warning">
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>説明</th>
+      <th>ジャンル</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= link_to item.name, item_path(item) %></td>
+        <td>¥<%= (item.price_no_tax*1.1).floor %></td>
+        <td><%= item.introduction %></td>
+        <td><%= item.genre.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</row>
