@@ -5,6 +5,7 @@ class CartItem < ApplicationRecord
 
   validates :quantity, presence: true
 
+
   def self.cart_items_total_price(cart_items)
     array = []
     cart_items.each do |cart_item|
