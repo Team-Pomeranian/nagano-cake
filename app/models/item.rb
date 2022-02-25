@@ -5,6 +5,10 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_one_attached :image
 
+  validates :name, presence: true
+  validates :introduction, length: {in: 1..140}
+  validates :price_no_tax, presence: true
+
 
   def with_tax_price
     (price_no_tax * 1.1).floor
