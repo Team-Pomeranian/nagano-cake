@@ -4,6 +4,7 @@
 
     <nav class="nav navbar-nav navbar-left">
       <% if admin_signed_in? %>
+
         <%= link_to  admin_root_path do %>
           <%= image_tag 'logo.png',size: "300x100" %>
         <% end %>
@@ -26,6 +27,7 @@
             <li class="header-name d-flex align-items-center">
             　　ようこそ、<%= current_customer.last_name %>さん！
             </li>
+
             <button class="btn btn-sm btn-light mr-3" type="button">
               <%= link_to "マイページ", customers_path(current_customer), class: "nav-link" %>
             </button>
@@ -38,7 +40,7 @@
             <button class="btn btn-sm btn-light mr-3" type="button">
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
             </button>
-            
+
 
           <% elsif admin_signed_in? %>
 
@@ -58,7 +60,7 @@
             <button class="btn btn-sm btn-light mr-3" type="button">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
             </button>
-            
+
 
           <% else %>
 
@@ -74,11 +76,10 @@
             </button>
             <button class="btn btn-sm btn-light mr-3" type="button">
               <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
-            </button>
-            
-            
+            </button>      
           <% end %>
           <%= render 'layouts/search' %>
+
         </ul>
       </div>
     </div>
