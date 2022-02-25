@@ -5,40 +5,44 @@
     <div class="col-md-2">
       <table class="table border">
         <thead class="text-center">
-          <tr>
+          <tr class="table-warning">
             <th>ジャンル検索</th>
           </tr>
         </thead>
-
         <tbody>
           <%= render "public/items/sidebar", genres: @genres %>
         </tbody>
-
       </table>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-6">
 
-      <div class="card mb-4">
-        <%= image_tag "test.png",size: "700x300",class: "mx-auto" %>
-        <div class="card-img-overlay col-6 mx-auto mt-5">
-          <div class="bg-white py-2">
-            <p>ようこそ、ながのCAKEへ！</p>
-            <p>このサイトは、ケーキ販売のECサイトになります。</p>
-            <p>会員でない方も商品の閲覧はできますが、</p>
-            <p>購入には会員登録が必要になります。</p>
+      <div class="card mb-4 text-white">
+        <%= image_tag "tart2.jpg",size: "700x400",class: "mx-auto" %>
+        <div class="card-img-overlay col-8 mx-auto d-flex align-items-center justify-content-center">
+          <div class="py-2">
+            <p class="card-text font-weight-bold">
+              ようこそ、ながのCAKEへ！<br>
+            このサイトは、ケーキ販売のECサイトになります。<br>
+            会員でない方も商品の閲覧はできますが、<br>
+            購入には会員登録が必要になります。
+            </p>
           </div>
         </div>
       </div>
+       <h2 class="col-md-12 font-weight-bold">新着商品<i class="fa-solid fa-kiwi-bird"></i></h2>
+    </div>
+    
+    
 
-        <h2 class="font-weight-bold mb-3">新着商品</h2>
+    <div class="col-md-12">
 
-      <div class="row">
-
+      <div class="row justify-content-center">
+        
         <% @items.each do |item| %>
         <div class="pl-4">
           <%= link_to item_path(item.id) do %>
-          <%= image_tag item.get_image(200, 300) %>
+          <%= image_tag item.get_image(200, 300) ,class: "shadow p-3 mb-5 bg-body round" %>
           <% end %>
           <p><%= item.name %></p>
           <p>¥<%= item.price_no_tax %></p>
