@@ -4,6 +4,7 @@
 
     <nav class="nav navbar-nav navbar-left">
       <% if admin_signed_in? %>
+
         <%= link_to  admin_root_path do %>
           <%= image_tag 'logo3.png',size: "200x100" %>
         <% end %>
@@ -27,8 +28,9 @@
             　　ようこそ、<%= current_customer.last_name %>さん！
             </li>
 
+
             <button class="btn btn-sm btn-warning mr-2" type="button">
-               <%= link_to customers_path(current_customer), class: "nav-link", method: :get do %>
+               <%= link_to customers_path, class: "nav-link", method: :get do %>
               マイページ<i class="fas fa-user"></i>
               <% end %>
             </button>
@@ -47,6 +49,7 @@
               ログアウト<i class="fas fa-sign-out"></i>
               <% end %>
             </button>
+
 
           <% elsif admin_signed_in? %>
 
@@ -77,6 +80,7 @@
               <% end %>
             </button>
 
+
           <% else %>
 
           <!-- ログインしていない時 -->
@@ -100,7 +104,10 @@
               ログイン<i class="fas fa-sign-in"></i>
               <% end %>
             </button>
+
           <% end %>
+          <%= render 'layouts/search' %>
+
         </ul>
       </div>
     </div>

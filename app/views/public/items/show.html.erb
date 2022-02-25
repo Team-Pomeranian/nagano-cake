@@ -18,7 +18,7 @@
 
 
     <div class="col-md-5">
-      <%= image_tag @item.get_image(300, 400) %>
+      <%= image_tag @item.get_image(300, 400) ,class: "shadow p-3 mb-5 bg-body round" %>
     </div>
 
     <div class="col-md-5">
@@ -27,9 +27,10 @@
 
       <p class="float-left col-md-12"><strong>¥ <%= (@item.price_no_tax*1.1).floor %></strong>(税込)</p>
       <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <%= f.hidden_field :customer_id, value: current_customer.id %>
         <div class="float-left col-md-6"><%= f.select :quantity, ['1','2','3','4','5','6','7','8','9','10'] , {include_blank: '個数選択'} , class: "quantity-select-form" %></div>
         <div class="float-left col-md-6"><%= f.submit "カートに入れる", class: "btn btn-primary" %></div>
-        <%= f.hidden_field :item_id, value: @item %>
       <% end %>
   </div>
   </div>
