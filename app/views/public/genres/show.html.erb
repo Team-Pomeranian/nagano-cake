@@ -30,7 +30,7 @@
         <div class="pl-4">
           <div>
           <%= link_to item_path(item) do %>
-          <%= image_tag item.get_image(200, 300) %>
+          <%= image_tag item.get_image(200, 300) ,class: "shadow p-3 mb-5 bg-body round" %>
           <% end %>
           </div>
           <%= item.name %><br>
