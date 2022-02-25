@@ -2,7 +2,7 @@ class Admin::OrderItemsController < ApplicationController
 before_action :authenticate_admin!
 
   def update
-    @order_item = OrderItem.find(params[:id])
+    @order_item = OrderItem.find(params[:order_id])
     @order = @order_item.order
     @order_item.update(order_item_params)
     if @order_item.production_status == "製作中"
