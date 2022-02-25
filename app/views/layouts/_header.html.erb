@@ -4,8 +4,7 @@
 
     <nav class="nav navbar-nav navbar-left">
       <% if admin_signed_in? %>
-      
-      
+
         <%= link_to  admin_root_path do %>
           <%= image_tag 'logo.png',size: "300x100" %>
         <% end %>
@@ -42,6 +41,7 @@
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
             </button>
 
+
           <% elsif admin_signed_in? %>
 
           <!-- 管理者がログインしている時 -->
@@ -52,11 +52,15 @@
               <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
             </button>
             <button class="btn btn-sm btn-light mr-3" type="button">
-              <%= link_to "注文履歴一覧", admin_order_path, class: "nav-link" %>
+              <%= link_to "注文履歴一覧", admin_root_path, class: "nav-link" %>
+            </button>
+            <button class="btn btn-sm btn-light mr-3" type="button">
+              <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link" %>
             </button>
             <button class="btn btn-sm btn-light mr-3" type="button">
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
             </button>
+
 
           <% else %>
 
@@ -72,8 +76,10 @@
             </button>
             <button class="btn btn-sm btn-light mr-3" type="button">
               <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
-            </button>
+            </button>      
           <% end %>
+          <%= render 'layouts/search' %>
+
         </ul>
       </div>
     </div>

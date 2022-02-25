@@ -1,2 +1,82 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class ="container">
+  <h2>注文履歴詳細</h2>
+  <div class ="row">
+    <div class= "col-md-12">
+      <table class ="table">
+        <tr>
+          <td class="font-weight-bold">購入者</td>
+          <td><%= @order.customer.last_name %><%= @order.customer.first_name %></td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">注文日</td>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">配送先</td>
+          <td>
+            〒<%= @order.postcode %>  <%= @order.address %></br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">支払方法</td>
+          <td><%= @order.payment %></td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">注文ステータス</td>
+            <td>
+              <%= form_with model: @order, url: admin_order_path(@order), method: :patch, local: true do |f| %>
+              <%= f.select :status, [["入金待ち", "入金待ち"], ["入金確認", "入金確認"],["製作中", "製作中"],["発送準備中", "発送準備中"],["発送済み", "発送済み"]],{selected: @order.status} %>
+              <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class ="row">
+    <div class= "col-md-7">
+      <table class ="table">
+        <thead class="thead-light">
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>製作ステータス</th>
+        </thead>
+        <tbody>
+          <tr>
+            <% @order_items.each do |order_item| %>
+              <td><%= order_item.item.name %></td>
+              <td><%= order_item.item.cal_price %></td>
+              <td><%= order_item.quantity %></td>
+              <td><%= ((order_item.item.with_tax_price_order)*(order_item.quantity)).to_s(:delimited) %></td>
+              <td>
+                <%= form_with model: order_item, url: admin_order_order_item_path(order_item), method: :patch, local: true do |f| %>
+                  <%= f.select :production_status, [["着手不可", "着手不可"], ["製作待ち", "製作待ち"],["製作中", "製作中"],["製作完了", "製作完了"]],{selected: order_item.production_status} %>
+                  <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class ="col-md-4 offset-md-1">
+      <table class = "table">
+        <tr>
+          <td>商品合計</td>
+          <td><%= @order.total_price %>円</td>
+        </tr>
+        <tr>
+          <td>送料</td>
+          <td><%= @order.postage %>円</td>
+        </tr>
+        <tr>
+          <td class="font-weight-bold">請求金額合計</td>
+          <td class="font-weight-bold"><%= (@order.total_price+@order.postage) %>円</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

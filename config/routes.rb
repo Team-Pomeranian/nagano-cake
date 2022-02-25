@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   devise_for :customers, skip: :all
   devise_scope :customer do
     get 'customers/sign_in' => 'public/sessions#new', as: 'new_customer_session'
@@ -9,9 +10,14 @@ Rails.application.routes.draw do
     post 'customers' => 'public/registrations#creat', as: 'customer_registration'
   end
 
+  get 'searches/search'
+  
+
   devise_for :admin,skip: [:registrations, :passwords], controllers:{
     sessions: "admin/sessions"
   }
+
+  get "search" => "searches#search"
 
   namespace :admin do
     root 'homes#top'
@@ -20,7 +26,11 @@ Rails.application.routes.draw do
 
     resources :items, except: [:destroy]
 
-    resources :orders, only: [:show, :update]
+    resources :orders, only: [:show, :update]do
+      resources :order_items, only:[:update]
+    end
+
+
 
     resources :customers, only: [:index, :show, :edit, :update]
 
@@ -55,6 +65,8 @@ Rails.application.routes.draw do
   end
 
   resources :items,only: [:index, :show]
+
+  resources :genres, only: [:show]
 
   end
 
