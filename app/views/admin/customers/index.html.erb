@@ -1,4 +1,4 @@
-<div class='container pt-3'>
+<div class='container p-3'>
   <h2>会員一覧</h2>
   <div class='row'>
     <div class = "mx-auto", style="width: 75%;">
@@ -21,9 +21,9 @@
               <td><%= customer.email %></td>
               <td>
                 <% if customer.is_deleted %>
-                  <%= "退会済み" %>
+                  <p class="text-secondary" >退会済み</p>
                 <% else %>
-                  <%= "有効会員" %>
+                  <p class="text-success" >有効会員</p>
                 <% end %>
               </td>
             <% end %>
