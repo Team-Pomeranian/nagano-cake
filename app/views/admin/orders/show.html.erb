@@ -66,7 +66,7 @@
       <table class = "table">
         <tr>
           <td>商品合計</td>
-          <td><%= @order.total_price %>円</td>
+          <td><%= @order.total_price.to_s(:delimited) %>円</td>
         </tr>
         <tr>
           <td>送料</td>
@@ -74,7 +74,7 @@
         </tr>
         <tr>
           <td class="font-weight-bold">請求金額合計</td>
-          <td class="font-weight-bold"><%= (@order.total_price+@order.postage) %>円</td>
+          <td class="font-weight-bold"><%= (@order.total_price+@order.postage).to_s(:delimited) %>円</td>
         </tr>
       </table>
     </div>
