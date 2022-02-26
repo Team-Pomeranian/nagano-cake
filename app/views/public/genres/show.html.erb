@@ -34,7 +34,7 @@
           <% end %>
           </div>
           <%= item.name %><br>
-          ¥<%= item.price_no_tax %><br>
+          ¥<%= item.price_no_tax.to_s(:delimited) %>(税抜)<br>
         </div>
         <% end %>
 
