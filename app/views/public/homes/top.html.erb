@@ -15,19 +15,16 @@
       </table>
     </div>
 
-    <div class="col-md-6">
 
-      <div class="card mb-4 text-white">
-        <%= image_tag "tart2.jpg",size: "700x400",class: "mx-auto" %>
-        <div class="card-img-overlay col-8 mx-auto d-flex align-items-center justify-content-center">
-          <div class="py-2">
-            <p class="card-text font-weight-bold">
-              ようこそ、ながのCAKEへ！<br>
-            このサイトは、ケーキ販売のECサイトになります。<br>
-            会員でない方も商品の閲覧はできますが、<br>
-            購入には会員登録が必要になります。
-            </p>
-          </div>
+    <div class="col-md-8">
+
+      <div class="card mb-4">
+        <%= render 'layouts/carousel' %>
+        <div class="cover-text">
+          　　　　<h4 class="text-dark font-weight-bold ">ようこそ、ながのCAKEへ！</h4>
+            <p class="text-dark  font-weight-bold">このサイトは、ケーキ販売のECサイトになります。</p>
+            <p class="text-dark  font-weight-bold">会員でない方も商品の閲覧はできますが、</p>
+            <p class="text-dark  font-weight-bold">購入には会員登録が必要になります。</p>
         </div>
       </div>
        <h2 class="col-md-12 font-weight-bold">新着商品<i class="fa-solid fa-kiwi-bird"></i></h2>
@@ -54,7 +51,7 @@
         <%= link_to "全ての商品を見る >",items_path %>
       </div>
 
-    </div>
+
 
 
   </div>
