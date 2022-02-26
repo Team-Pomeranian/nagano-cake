@@ -4,7 +4,6 @@
 
     <nav class="nav navbar-nav navbar-left">
       <% if admin_signed_in? %>
-
         <%= link_to  admin_root_path do %>
           <%= image_tag 'logo3.png',size: "200x100" %>
         <% end %>
@@ -15,6 +14,10 @@
       <% end %>
     </nav>
 
+    <div class="header-name text-right offset-md-4">
+      ようこそ、<%= current_customer.last_name %>さん！
+    </div>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -23,12 +26,6 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto">
           <% if customer_signed_in? %>
-            <!--カスタマーがログインしている時 -->
-            <li class="header-name d-flex align-items-center">
-            　　ようこそ、<%= current_customer.last_name %>さん！
-            </li>
-
-
             <button class="btn btn-sm btn-warning mr-2" type="button">
                <%= link_to customers_path, class: "nav-link", method: :get do %>
               マイページ<i class="fas fa-user"></i>
@@ -49,10 +46,7 @@
               ログアウト<i class="fas fa-sign-out"></i>
               <% end %>
             </button>
-
-
           <% elsif admin_signed_in? %>
-
           <!-- 管理者がログインしている時 -->
             <button class="btn btn-sm btn-warning mr-2" type="button">
               <%= link_to admin_items_path, class: "nav-link", method: :get do %>
@@ -79,10 +73,7 @@
               ログアウト<i class="fas fa-sign-out"></i>
               <% end %>
             </button>
-
-
           <% else %>
-
           <!-- ログインしていない時 -->
             <button class="btn btn-sm btn-warning mr-2" type="button">
               <%= link_to about_path, class: "nav-link", method: :get do %>
@@ -104,14 +95,11 @@
               ログイン<i class="fas fa-sign-in"></i>
               <% end %>
             </button>
-
           <% end %>
-          <%= render 'layouts/search' %>
-
         </ul>
       </div>
+      <%= render 'layouts/search' %>
     </div>
-
     </div>
   </nav>
 </header>
