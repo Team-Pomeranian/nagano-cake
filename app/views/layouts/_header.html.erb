@@ -15,7 +15,9 @@
     </nav>
 
     <div class="header-name text-right offset-md-4">
-      ようこそ、<%= current_customer.last_name %>さん！
+      <% if customer_signed_in? %>
+        ようこそ、<%= current_customer.last_name %>さん！
+      <% end %>
     </div>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
