@@ -5,7 +5,7 @@
     <div class="col-md-2">
       <table class="table border">
         <thead class="text-center">
-          <tr>
+          <tr class="table-warning">
             <th>ジャンル検索</th>
           </tr>
         </thead>
@@ -34,7 +34,7 @@
           <% end %>
           </div>
           <%= item.name %><br>
-          ¥<%= item.price_no_tax %><br>
+          ¥<%= item.price_no_tax.to_s(:delimited) %>(税抜)<br>
         </div>
         <% end %>
 

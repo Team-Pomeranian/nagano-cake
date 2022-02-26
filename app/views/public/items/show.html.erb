@@ -1,9 +1,9 @@
-<div class="container p-5">
+<div class="p-5">
   <div class="row">
     <div class="col-md-2">
       <table class="table border">
         <thead class="text-center">
-          <tr>
+          <tr class="table-warning">
             <th>ジャンル検索</th>
           </tr>
         </thead>
@@ -17,7 +17,7 @@
 
 
 
-    <div class="col-md-5">
+    <div class="col-md-4 offset-md-1">
       <%= image_tag @item.get_image(300, 400) ,class: "shadow p-3 mb-5 bg-body round" %>
     </div>
 
@@ -26,7 +26,7 @@
       <div class="float-left col-md-12 mt-1 mb-5"><%= @item.introduction %></div>
 
       <p class="text-danger"><%= flash[:none] %></p>
-      <p class="float-left col-md-12"><strong>¥ <%= (@item.price_no_tax*1.1).floor %></strong>(税込)</p>
+      <p class="float-left col-md-12"><strong>¥ <%= @item.with_tax_price.to_s(:delimited) %></strong>(税込)</p>
       <% if current_customer.presence && (@item.sales_status == true ) %>
       <%= form_with(model: @cart_item, url: cart_items_path, method: :post, local: true) do |f| %>
         <%= f.hidden_field :item_id, value: @item.id %>
