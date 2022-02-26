@@ -10,7 +10,7 @@
 
       <ul>
       <% @delivery_address.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li class="text-danger"><%= message %></li>
       <% end %>
       </ul>
 
@@ -44,7 +44,7 @@
 
 
   <div class="row">
-    <table class="table col-md-8">
+    <table class="table col-md-8 border">
       <thead>
         <tr>
           <th class="">郵便番号</th>

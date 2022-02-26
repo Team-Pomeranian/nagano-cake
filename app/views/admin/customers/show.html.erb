@@ -1,11 +1,11 @@
-<div class='container'>
-  <h2><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h2>
+<div class='container p-5'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h3 class="font-weight-bold"><%= @customer.last_name %><%= @customer.first_name %> 様の会員詳細</h3>
       <table class= "table">
         <tr><td class ="font-weight-bold">会員ID</td><td><%= @customer.id %></td></tr>
         <tr><td class ="font-weight-bold">氏名</td><td><%= @customer.last_name %><%= @customer.first_name %></td></tr>
-        <tr><td class ="font-weight-bold">フリガナ</td><td><%= @customer.last_name_kana %><%= @customer.fitst_name_kana %></td></tr>
+        <tr><td class ="font-weight-bold">フリガナ</td><td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td></tr>
         <tr><td class ="font-weight-bold">郵便番号</td><td><%= @customer.post_code %></td></tr>
         <tr><td class ="font-weight-bold">住所</td><td><%= @customer.address %></td></tr>
         <tr><td class ="font-weight-bold">電話番号</td><td><%= @customer.telephone_number %></td></tr>
@@ -14,9 +14,9 @@
           <td class ="font-weight-bold">会員ステータス</td>
           <td>
             <% if @customer.is_deleted %>
-              <%= "退会済み" %>
+              <p class ="font-weight-bold"><%= "退会済み" %></p>
             <% else %>
-              <%= "有効会員" %>
+              <p class ="font-weight-bold text-success"><%= "有効会員" %></p>
             <% end %>
           </td>
         </tr>

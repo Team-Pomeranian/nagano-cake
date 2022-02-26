@@ -3,6 +3,10 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_items, dependent: :destroy
 
+  validates :name, presence: true
+  validates :address, presence: true
+  validates :postcode, length: {is: 7}
+
   enum status: {
     入金待ち: 0,
     入金確認: 1,

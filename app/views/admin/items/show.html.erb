@@ -1,11 +1,11 @@
-<div class="container px-5 px-sm-0">
-  <h2>商品詳細</h2>
+<div class="container px-5 px-sm-0 p-5">
+  <h3 class="font-weight-bold">商品詳細</h3>
   <div class="row">
-    <div class="col-md-3">
-      <%= image_tag @item.get_image(300, 200) %>
+   <div class="col-md-3">
+      <%= image_tag @item.get_image(300, 200) ,class: "shadow p-3 mb-5 bg-body round" %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <table class="table">
+      <table class="table table-borderless">
         <tbody>
           <tr>
           <th>商品名</th>
@@ -20,7 +20,7 @@
           <td><%= @item.genre.name %></td>
           </tr>
           <tr>
-          <th>税込価格<br>(税抜価格)</th>
+          <th>税込価格(税抜価格)</th>
           <td><%= @item.cal_price %>
               (<%= @item.adj_price %>)円
           </td>
@@ -35,11 +35,14 @@
             <% end %>
           </td>
           </tr>
+          <tr>
+            <th></th>
+            <td>
+              <%= link_to "編集する", edit_admin_item_path(@item), class: 'btn btn-success' %>
+            </td>
+          </tr>
         </tbody>
       </table>
-      <div>
-        <%= link_to "編集する", edit_admin_item_path(@item), class: 'btn btn-success' %>
-      </div>
     </div>
   </div>
 </div>

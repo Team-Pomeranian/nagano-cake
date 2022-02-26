@@ -5,6 +5,11 @@ class Item < ApplicationRecord
   belongs_to :genre
   has_one_attached :image
 
+  validates :name, presence: true
+  validates :introduction, length: {in: 1..140}
+  validates :price_no_tax, presence: true
+
+
   def with_tax_price
     (price_no_tax * 1.1).floor
   end
@@ -21,6 +26,7 @@ class Item < ApplicationRecord
     price_no_tax.to_s(:delimited)
   end
 
+
   def get_image(width, height)
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -28,7 +34,7 @@ class Item < ApplicationRecord
     end
     image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def self.search(search)
     if search
       Item.where(['name LIKE ?', "%#{search}%"])

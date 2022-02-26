@@ -64,10 +64,10 @@
         <tbody>
           <% @order_items.each do |f| %>
             <tr>
-              <td><%= f.name %></td>
-                <td>¥<%= f.price_no_tax.to_s(:delimited) %></td>
+              <td><%= f.item.name %></td>
+                <td>¥<%= f.item.with_tax_price.to_s(:delimited) %></td>
                 <td><%= f.quantity %></td>
-                <td>¥<%= (f.price_no_tax*f.quantity).to_s(:delimited) %></td>
+                <td>¥<%= (f.item.price_no_tax*f.quantity).to_s(:delimited) %></td>
             </tr>
           <% end %>
         </tbody>
